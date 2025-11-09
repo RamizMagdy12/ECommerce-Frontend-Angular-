@@ -1,0 +1,50 @@
+<div class="container py-5">
+
+  <div class="text-center mb-4">
+    <input type="text" class="form-control d-inline-block w-50 me-2 shadow-sm" placeholder="Search products..."
+      [(ngModel)]="searchTerm" (input)="onSearch()" />
+  </div>
+  <!-- أزرار التصنيفات -->
+  <div class="text-center mb-4">
+    <button class="btn btn-outline-primary mx-1 mb-2" [class.active]="selectedCategory === ''"
+      (click)="filterByCategory('')">
+      All
+    </button>
+
+    <button *ngFor="let cat of categories$ | async" class="btn btn-outline-primary mx-1 mb-2 text-capitalize"
+      [class.active]="selectedCategory === cat" (click)="filterByCategory(cat)">
+      {{ cat }}
+    </button>
+  </div>
+
+  <!-- المنتجات -->
+  <div class="row g-4" *ngIf="product$ | async as products">
+    <div class="col" *ngFor="let product of products">
+      <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden hover-effect">
+        <div class="card-img-wrapper">
+          <img [src]="product.images[0]" class="card-img-top" alt="{{ product.title }}" />
+        </div>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-truncate" title="{{ product.title }}">{{ product.title }}</h5>
+          <p class="text-muted small flex-grow-1">{{ product.description | slice: 0:100 }}...</p>
+          <p class="fw-bold text-success mb-3">{{ product.price | currency: 'USD' }}</p>
+
+          <div class="d-flex justify-content-between mt-auto gap-2">
+            <button class="btn-custom btn-outline" (click)="viewDetails(product.id)">
+              <i class="bi bi-eye"></i> View
+            </button>
+            <button class="btn-custom btn-fill" (click)="addToCart(product)">
+              <i class="bi bi-cart-plus"></i> Add To Cart
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="toggleWishlist(product)">
+              <i [ngClass]="(isInWishlist(product) | async) ? 'bi bi-heart-fill text-danger' : 'bi bi-heart'"></i>
+            </button>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

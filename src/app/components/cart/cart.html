@@ -1,0 +1,42 @@
+<div class="cart">
+  <h2>Shopping Cart 🛒 {{ getTotalItems() }}</h2>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.product.images[0]" [alt]="item.product.title" alt="" />
+      <div class="cart-details">
+        <h4>{{ item.product.title }}</h4>
+        <p>Price: {{ item.product.price | currency:'USD' }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <div class="cart-actions">
+          <button (click)="inCreaseQuantity(item.product.id)">+</button>
+          <button (click)="deCreaseQuantity(item.product.id)">-</button>
+          <button (click)="removeItem(item.product.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- المجموع الكلي -->
+    <div class="cart-total text-center">
+      <h3>Total: {{ getTotalPrice() | currency:'USD' }}</h3>
+
+      <button class="btn btn-success mt-3" (click)="goToPayment()">
+        <i class="bi bi-credit-card"></i> Proceed to Payment
+      </button>
+
+      <!-- 🔹 زر مسح كل العناصر -->
+      <button class="btn btn-danger mt-3 ms-2" (click)="clearCart()">
+        <i class="bi bi-trash"></i> Clear All
+      </button>
+
+      <!-- 🔹 زر العودة للتسوق -->
+      <button class="btn btn-secondary mt-3 ms-2" (click)="continueShopping()">
+        <i class="bi bi-arrow-left"></i> Continue Shopping
+      </button>
+    </div>
+  </div>
+</div>

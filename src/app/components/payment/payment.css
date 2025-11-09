@@ -1,0 +1,20 @@
+.payment-section {
+  background-color: #f9fafc;
+  min-height: 80vh;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+button {
+  font-size: 1.1rem;
+}
+
+.form-check-label {
+  cursor: pointer;
+}

@@ -1,0 +1,30 @@
+.footer-link {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: #0d6efd;
+  transform: translateX(-3px);
+}
+
+.social-icon {
+  color: #bbb;
+  font-size: 1.3rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #0d6efd;
+  transform: scale(1.2);
+}
+
+footer hr {
+  opacity: 0.2;
+}
+
+footer {
+  border-top: 2px solid #0d6efd20;
+}

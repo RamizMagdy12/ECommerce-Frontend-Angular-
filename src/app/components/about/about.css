@@ -1,0 +1,13 @@
+.about-section {
+  background-color: #f9fafc;
+  min-height: 70vh;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+}
+
+.about-section p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}

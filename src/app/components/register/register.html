@@ -1,0 +1,107 @@
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto border-0" style="max-width: 450px; border-radius: 20px;">
+    <div class="card-body p-4 p-md-5">
+      <h2 class="text-center text-primary mb-4 fw-bold">📝 Create a New Account</h2>
+
+      <form
+        (ngSubmit)="onRegister(registerForm)"
+        #registerForm="ngForm"
+        novalidate
+      >
+        <!-- name -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-semibold">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control form-control-lg"
+            required
+            minlength="2"
+            [(ngModel)]="name"
+            #nameRef="ngModel"
+          />
+          <div class="form-text text-danger" *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)">
+            <small *ngIf="nameRef.errors?.['required']">Name is required.</small>
+            <small *ngIf="nameRef.errors?.['minlength']">Name is too short.</small>
+          </div>
+        </div>
+
+        <!-- email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control form-control-lg"
+            required
+            email
+            [(ngModel)]="email"
+            #emailRef="ngModel"
+          />
+          <div class="form-text text-danger" *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)">
+            <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+            <small *ngIf="emailRef.errors?.['email']">Invalid email format.</small>
+          </div>
+        </div>
+
+        <!-- password -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control form-control-lg"
+            required
+            minlength="6"
+            [(ngModel)]="password"
+            #passRef="ngModel"
+          />
+          <div class="form-text text-danger" *ngIf="passRef.invalid && (passRef.dirty || passRef.touched)">
+            <small *ngIf="passRef.errors?.['required']">Password is required.</small>
+            <small *ngIf="passRef.errors?.['minlength']">Password must be at least 6 characters.</small>
+          </div>
+        </div>
+
+        <!-- confirm password -->
+        <div class="mb-4">
+          <label for="confirmPassword" class="form-label fw-semibold">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            class="form-control form-control-lg"
+            required
+            minlength="6"
+            [(ngModel)]="confirmPassword"
+            #confirmRef="ngModel"
+          />
+          <div class="form-text text-danger" *ngIf="(confirmRef.dirty || confirmRef.touched)">
+            <small *ngIf="confirmRef.errors?.['required']">Confirmation password is required.</small>
+            <small *ngIf="confirmRef.errors?.['minlength']">Confirmation password must be at least 6 characters.</small>
+            <small *ngIf="passwordsMismatch">Passwords do not match.</small>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary btn-lg w-100 shadow-sm"
+          type="submit"
+          [disabled]="registerForm.invalid || passwordsMismatch"
+        >
+          Register
+        </button>
+      </form>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <p class="text-muted mb-1">Already have an account?</p>
+        <button class="btn btn-outline-primary w-100 btn-lg" (click)="goToLogin()">
+          🔑 Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<section class="payment-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">Complete Payment</h2>
+      <p class="text-muted">Please review your payment details before proceeding</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <!-- Payment Details -->
+      <div class="col-md-6">
+        <div class="card shadow-lg border-0 rounded-4 p-4">
+          <h5 class="fw-bold mb-3 text-primary">Choose Payment Method</h5>
+
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="card" value="card" [(ngModel)]="paymentMethod" checked />
+              <label class="form-check-label" for="card">
+                💳 Pay with Credit/Debit Card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="cod" [(ngModel)]="paymentMethod" />
+              <label class="form-check-label" for="cod">
+                💵 Cash on Delivery
+              </label>
+            </div>
+          </div>
+
+          <!-- Card Details -->
+          <div *ngIf="paymentMethod === 'card'">
+            <div class="mb-3">
+              <label class="form-label">Card Number</label>
+              <input type="text" maxlength="16" [(ngModel)]="cardNumber" name="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" />
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="expireyDatee">Expiry Date</label>
+                <input type="month" id="expireyDatee" [(ngModel)]="expiryDate" name="expiryDate" class="form-control" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">CVV</label>
+                <input type="text" maxlength="4" [(ngModel)]="cvv" name="cvv" class="form-control" placeholder="***" />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="paymentMethod === 'paypal'" class="text-center p-4 bg-light rounded-3">
+            <i class="bi bi-paypal fs-1 text-primary"></i>
+            <p class="mt-3">You’ll be redirected to PayPal to complete the payment securely 🔒</p>
+          </div>
+
+          <div *ngIf="paymentMethod === 'cod'" class="text-center p-4 bg-light rounded-3">
+            <i class="bi bi-cash-stack fs-1 text-success"></i>
+            <p class="mt-3">You’ll pay upon delivery. Thanks for shopping with us!</p>
+          </div>
+
+          <hr />
+
+          <!-- Total -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold fs-5">Total:</span>
+            <span class="fs-5 text-success fw-bold">{{ totalAmount | currency:'USD' }}</span>
+          </div>
+
+          <button class="btn btn-primary w-100 py-2" (click)="payNow()">
+            <i class="bi bi-credit-card me-2"></i> Complete Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

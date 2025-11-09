@@ -1,0 +1,16 @@
+.contact-section {
+  background-color: #f9fafc;
+  min-height: 80vh;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+button {
+  font-size: 1.1rem;
+}

@@ -1,0 +1,20 @@
+.error-page {
+  background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+svg {
+  animation: pop 0.7s ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

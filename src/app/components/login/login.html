@@ -1,0 +1,68 @@
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto border-0" style="max-width: 450px; border-radius: 20px;">
+    <div class="card-body p-4 p-md-5">
+      <h2 class="text-center text-primary mb-4 fw-bold">🔑 Login</h2>
+
+      <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm" novalidate>
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control form-control-lg"
+            required
+            email
+            [(ngModel)]="email"
+            #emailRef="ngModel"
+          />
+          <div
+            class="form-text text-danger"
+            *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)"
+          >
+            <small *ngIf="emailRef.errors?.['required']">Email is required.</small>
+            <small *ngIf="emailRef.errors?.['email']">Invalid email format.</small>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control form-control-lg"
+            required
+            [(ngModel)]="password"
+            #passRef="ngModel"
+          />
+          <div
+            class="form-text text-danger"
+            *ngIf="passRef.invalid && (passRef.dirty || passRef.touched)"
+          >
+            <small *ngIf="passRef.errors?.['required']">Password is required.</small>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary btn-lg w-100 shadow-sm"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </form>
+
+      <hr class="my-4" />
+
+      <div class="text-center">
+        <p class="text-muted mb-1">Don’t have an account?</p>
+        <button class="btn btn-outline-primary btn-lg w-100" (click)="goToRegister()">
+          ✨ Create New Account
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
